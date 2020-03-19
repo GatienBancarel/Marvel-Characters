@@ -1,20 +1,12 @@
 ﻿using System;
-using System.Security.Cryptography;
 using System.Text;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
 using System.Net;
+using System.Diagnostics;
+using System.Web;
+using Newtonsoft.Json;
+using System.Threading;
 
 namespace WpfApp1
 {
@@ -23,7 +15,8 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
-        const string url = "https://gateway.marvel.com/v1/public/characters?ts=";
+        const string urlCharacters = "https://gateway.marvel.com/v1/public/characters?ts=";
+        const string urlComics = "https://gateway.marvel.com/v1/public/comics?ts=";
         const string publicKey = "3a12e0bedc5ccb31e93535f4f661f5d2";
         const string privateKey = "9ff0d7b4c3c6223fc5374ab41624fbee915ce0ef";
         const string format = "&format=json";
@@ -60,17 +53,77 @@ namespace WpfApp1
 
         private void btnEnter(object sender, RoutedEventArgs e)
         {
-            resultat();
+            string charId = getCharacterId();
+            getComics(charId);
+
+
         }
 
-        private void resultat()
+        private void getComics(String charId)
+        {
+            String timeStamp = GetTimestamp(new DateTime());
+            string hash = CreateMD5(timeStamp + privateKey + publicKey);
+
+            var jsonRep = new WebClient().DownloadString(urlComics + timeStamp + "&characters=" + charId + "&apikey=" + publicKey + "&hash=" + hash);
+
+            Trace.WriteLine(jsonRep);
+
+            dynamic JObj = JsonConvert.DeserializeObject(jsonRep);
+
+            int comicsCount = JObj.data.count;
+
+            
+            Trace.WriteLine(comicsCount);
+            content.Text = comicsCount.ToString();
+
+            for (int i = 0; i < comicsCount; i++)
+            {
+                Trace.WriteLine(i);
+
+                int crtId = JObj.data.results[i].id;
+                String crtTitle = JObj.data.results[i].title;
+                int crtIssue = JObj.data.results[i].issueNumber;
+                String crtDesc = JObj.data.results[i].description;
+                String crtThumbnail = JObj.data.results[i].thumbnail.path + ""+ JObj.data.results[i].thumbnail.extension;
+
+                Trace.WriteLine(crtId);
+                Trace.WriteLine(crtDesc);
+                Trace.WriteLine(crtIssue);
+                Trace.WriteLine(crtTitle);
+                Trace.WriteLine(crtThumbnail);
+
+
+                Thread.Sleep(1000);
+
+            }
+
+
+
+        }
+
+
+
+        private String getCharacterId()
         {
             String timeStamp = GetTimestamp(new DateTime());
             string hash = CreateMD5(timeStamp+privateKey+publicKey);
             
-            var json = new WebClient().DownloadString(url + timeStamp + "&name=" + textBoxSearch.Text + "&apikey=" + publicKey + "&hash=" + hash);
-            content.Text = json;
-            
+            var jsonRep = new WebClient().DownloadString(urlCharacters + timeStamp + "&name=" + textBoxSearch.Text + "&apikey=" + publicKey + "&hash=" + hash);
+
+            Trace.WriteLine(jsonRep);
+
+
+            dynamic JObj = JsonConvert.DeserializeObject(jsonRep);
+            string charactersId = JObj.data.results[0].id;
+            string charactersIdStr = charactersId.ToString();
+
+           Trace.WriteLine(jsonRep);
+            Trace.WriteLine(charactersId);
+
+
+            //content.Text = json;
+            return charactersId;
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
