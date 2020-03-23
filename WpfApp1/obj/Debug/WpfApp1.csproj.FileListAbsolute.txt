@@ -28,3 +28,4 @@ C:\Users\Valentin\Desktop\ING4\C#\Projet\Marvel-Characters\WpfApp1\obj\Debug\Wpf
 C:\Users\Valentin\Desktop\ING4\C#\Projet\Marvel-Characters\WpfApp1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Valentin\Desktop\ING4\C#\Projet\Marvel-Characters\WpfApp1\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Valentin\Desktop\ING4\C#\Projet\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
+C:\Users\Valentin\Desktop\ING4\C#\Projet\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache

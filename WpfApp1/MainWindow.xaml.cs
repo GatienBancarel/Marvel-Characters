@@ -13,6 +13,9 @@ namespace WpfApp1
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
+    /// 
+
+
     public partial class MainWindow : Window
     {
         const string urlCharacters = "https://gateway.marvel.com/v1/public/characters?ts=";
@@ -21,6 +24,7 @@ namespace WpfApp1
         const string privateKey = "9ff0d7b4c3c6223fc5374ab41624fbee915ce0ef";
         const string format = "&format=json";
 
+        List<Comic> comics = new List<Comic>();
 
 
         public MainWindow()
@@ -87,15 +91,19 @@ namespace WpfApp1
                 String crtThumbnail = JObj.data.results[i].thumbnail.path + ""+ JObj.data.results[i].thumbnail.extension;
 
                 Trace.WriteLine(crtId);
-                Trace.WriteLine(crtDesc);
-                Trace.WriteLine(crtIssue);
                 Trace.WriteLine(crtTitle);
+                Trace.WriteLine(crtIssue);
+                Trace.WriteLine(crtDesc);
                 Trace.WriteLine(crtThumbnail);
+                Trace.WriteLine("*****************************");
+
+                comics.Add(new Comic() { ID = crtId, Title = crtTitle, Thumbnail = crtThumbnail, Issue = crtIssue, Description = crtDesc });
 
 
-                Thread.Sleep(1000);
 
             }
+
+            listDonne.ItemsSource = comics;
 
 
 
@@ -131,6 +139,9 @@ namespace WpfApp1
 
         }
 
+        private void ListView_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }
