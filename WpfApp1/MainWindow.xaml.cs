@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Web;
 using Newtonsoft.Json;
 using System.Threading;
+using System.Windows.Media.Imaging;
 
 namespace WpfApp1
 {
@@ -59,8 +60,6 @@ namespace WpfApp1
         {
             string charId = getCharacterId();
             getComics(charId);
-
-
         }
 
         private void getComics(String charId)
@@ -78,7 +77,6 @@ namespace WpfApp1
 
             
             Trace.WriteLine(comicsCount);
-            content.Text = comicsCount.ToString();
 
             for (int i = 0; i < comicsCount; i++)
             {
@@ -124,9 +122,19 @@ namespace WpfApp1
             dynamic JObj = JsonConvert.DeserializeObject(jsonRep);
             string charactersId = JObj.data.results[0].id;
             string charactersIdStr = charactersId.ToString();
+            string characterThumbnail = JObj.data.results[0].thumbnail.path+ "/standard_large.jpg";
+            string characterDescription = JObj.data.results[0].description;
+            string characterName = JObj.data.results[0].name;
+            textName.Text = textName.Text + characterName;
+            textName.Visibility= Visibility.Visible;
+            textDescription.Text = textDescription.Text + characterDescription;
+            textDescription.Visibility= Visibility.Visible;
+            var uriSource = new Uri(characterThumbnail);
+            imageCharacter.Source = new BitmapImage(uriSource);
+            imageCharacter.Visibility= Visibility.Visible;
+            textListComics.Visibility= Visibility.Visible;
+            listDonne.Visibility= Visibility.Visible;
 
-           Trace.WriteLine(jsonRep);
-            Trace.WriteLine(charactersId);
 
 
             //content.Text = json;
