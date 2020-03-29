@@ -44,13 +44,7 @@
     <ListView x:Name="listDonne"  Grid.Row="2"  Margin="0,10,0,10" VerticalAlignment="Top" Width="900"  Cursor="Hand" Grid.ColumnSpan="3" Visibility="Collapsed">
       <ListView.View>
         <GridView>
-          <GridViewColumn Header="ID" Width="100">
-            <GridViewColumn.CellTemplate>
-              <DataTemplate>
-                <TextBlock Text="{Binding ID}" Margin="0,0,0,0" HorizontalAlignment="Stretch" />
-              </DataTemplate>
-            </GridViewColumn.CellTemplate>
-          </GridViewColumn>
+          
           <GridViewColumn Header="NOM" Width="200">
             <GridViewColumn.CellTemplate>
               <DataTemplate>
@@ -58,8 +52,7 @@
               </DataTemplate>
             </GridViewColumn.CellTemplate>
           </GridViewColumn>
-
-
+          
           <GridViewColumn Header="Description" Width="400">
             <GridViewColumn.CellTemplate>
               <DataTemplate>
@@ -68,10 +61,10 @@
             </GridViewColumn.CellTemplate>
           </GridViewColumn>
 
-          <GridViewColumn Header="THUMBNAIL" Width="200" >
+          <GridViewColumn Header="THUMBNAIL" Width="300" >
             <GridViewColumn.CellTemplate>
               <DataTemplate>
-                <Image Source="{Binding Thumbnail}" />
+                <Image x:Name="imageComics"  Source="{Binding Thumbnail}" Width="150"/>
               </DataTemplate>
             </GridViewColumn.CellTemplate>
           </GridViewColumn>

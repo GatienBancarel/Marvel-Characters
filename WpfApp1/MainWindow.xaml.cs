@@ -97,7 +97,7 @@ namespace WpfApp1
                 Trace.WriteLine(crtThumbnail);
                 Trace.WriteLine("*****************************");
 
-                comics.Add(new Comic() { ID = crtId, Title = crtTitle, Thumbnail = crtThumbnail, Issue = crtIssue, Description = crtDesc });
+                comics.Add(new Comic() {Title = crtTitle, Thumbnail = crtThumbnail, Issue = crtIssue, Description = crtDesc });
 
 
 
