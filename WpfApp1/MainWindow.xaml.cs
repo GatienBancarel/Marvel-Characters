@@ -33,6 +33,7 @@ namespace WpfApp1
             InitializeComponent();
         }
 
+        
         public static String GetTimestamp(DateTime value)
         {
             return value.ToString("yyyyMMddHHmmssffff");
@@ -75,7 +76,8 @@ namespace WpfApp1
 
             int comicsCount = JObj.data.count;
 
-            
+           
+
             Trace.WriteLine(comicsCount);
 
             for (int i = 0; i < comicsCount; i++)
@@ -125,9 +127,9 @@ namespace WpfApp1
             string characterThumbnail = JObj.data.results[0].thumbnail.path+ "/standard_large.jpg";
             string characterDescription = JObj.data.results[0].description;
             string characterName = JObj.data.results[0].name;
-            textName.Text = textName.Text + characterName;
+            textName.Text = "Name : " + characterName;
             textName.Visibility= Visibility.Visible;
-            textDescription.Text = textDescription.Text + characterDescription;
+            textDescription.Text = "Description : " + characterDescription;
             textDescription.Visibility= Visibility.Visible;
             var uriSource = new Uri(characterThumbnail);
             imageCharacter.Source = new BitmapImage(uriSource);
@@ -153,3 +155,4 @@ namespace WpfApp1
         }
     }
 }
+
