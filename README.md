@@ -6,7 +6,7 @@ Barre de recherche pour obtenir des informations sur chaque personnage de l'univ
 
 Cloner le projet à partir de votre terminal avec la commande : git clone https://github.com/GatienBancarel/Marvel-Characters
 
-Ou grâce à Github Desktop avec le lien suivant : https://github.com/GatienBancarel/Marvel-Characters 
+Ou grâce à Github Desktop avec le même lien.
 
 ### Pré-requis
 
@@ -19,10 +19,12 @@ Ce qui est requis pour commencer avec votre projet...
 
 Ouvrir le projet avec Visual Studio et compiler le code.
 
-Si tout ce passe comme il faut, vous obtenez la page suivante :
+Vous obtenez donc la page suivante :
 
 ![Capture d’écran (145)](https://user-images.githubusercontent.com/36404556/77901548-0e542f80-7280-11ea-8f21-498518bb6338.png)
 
+Vous pouvez à présent taper le nom d'un personnage de l'univers Marvel pour obtenir ses informations (photo, nom complet, description, comics associés) :
+![Capture d’écran (146)](https://user-images.githubusercontent.com/36404556/77902583-b5859680-7281-11ea-9d32-a36be6c2be6c.png)
 
 ## Auteurs
 
