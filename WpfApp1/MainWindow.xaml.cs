@@ -60,53 +60,49 @@ namespace WpfApp1
         private void btnEnter(object sender, RoutedEventArgs e)
         {
             string charId = getCharacterId();
-            getComics(charId);
+            if (charId != "error"){
+                getComics(charId);
+            }
         }
 
         private void getComics(String charId)
         {
             String timeStamp = GetTimestamp(new DateTime());
             string hash = CreateMD5(timeStamp + privateKey + publicKey);
+            var jsonRep = "";
 
-            var jsonRep = new WebClient().DownloadString(urlComics + timeStamp + "&characters=" + charId + "&apikey=" + publicKey + "&hash=" + hash);
-
-            Trace.WriteLine(jsonRep);
-
-            dynamic JObj = JsonConvert.DeserializeObject(jsonRep);
-
-            int comicsCount = JObj.data.count;
-
-           
-
-            Trace.WriteLine(comicsCount);
-
-            for (int i = 0; i < comicsCount; i++)
+            using (WebClient client = new WebClient())
             {
-                Trace.WriteLine(i);
+                try
+                {
+                    jsonRep = client.DownloadString(urlComics + timeStamp + "&characters=" + charId + "&apikey=" + publicKey + "&hash=" + hash);
+                    //Trace.WriteLine(jsonRep);
 
-                int crtId = JObj.data.results[i].id;
-                String crtTitle = JObj.data.results[i].title;
-                int crtIssue = JObj.data.results[i].issueNumber;
-                String crtDesc = JObj.data.results[i].description;
-                String crtThumbnail = JObj.data.results[i].thumbnail.path + ""+ JObj.data.results[i].thumbnail.extension;
+                    dynamic JObj = JsonConvert.DeserializeObject(jsonRep);
+                    int comicsCount = JObj.data.count;
+                    Trace.WriteLine(comicsCount);
 
-                Trace.WriteLine(crtId);
-                Trace.WriteLine(crtTitle);
-                Trace.WriteLine(crtIssue);
-                Trace.WriteLine(crtDesc);
-                Trace.WriteLine(crtThumbnail);
-                Trace.WriteLine("*****************************");
+                    for (int i = 0; i < comicsCount; i++)
+                    {
+                        Trace.WriteLine(i);
 
-                comics.Add(new Comic() {Title = crtTitle, Thumbnail = crtThumbnail, Issue = crtIssue, Description = crtDesc });
+                        int crtId = JObj.data.results[i].id;
+                        String crtTitle = JObj.data.results[i].title;
+                        int crtIssue = JObj.data.results[i].issueNumber;
+                        String crtDesc = JObj.data.results[i].description;
+                        String crtThumbnail = JObj.data.results[i].thumbnail.path + ""+ JObj.data.results[i].thumbnail.extension;
 
-
-
+                        comics.Add(new Comic() {Title = crtTitle, Thumbnail = crtThumbnail, Description = crtDesc });
+                    }
+                    listDonne.ItemsSource = comics;
+                }
+                catch (WebException e)
+                {
+                    textName.Text = "La requête à échoué";
+                    textName.Visibility= Visibility.Visible;
+                    throw e;
+                }
             }
-
-            listDonne.ItemsSource = comics;
-
-
-
         }
 
 
@@ -115,33 +111,49 @@ namespace WpfApp1
         {
             String timeStamp = GetTimestamp(new DateTime());
             string hash = CreateMD5(timeStamp+privateKey+publicKey);
-            
-            var jsonRep = new WebClient().DownloadString(urlCharacters + timeStamp + "&name=" + textBoxSearch.Text + "&apikey=" + publicKey + "&hash=" + hash);
+            var jsonRep = "";
 
-            Trace.WriteLine(jsonRep);
+            using (WebClient client = new WebClient())
+            {
+                try
+                {
+                    jsonRep = client.DownloadString(urlCharacters + timeStamp + "&name=" + textBoxSearch.Text + "&apikey=" + publicKey + "&hash=" + hash);
 
+                    dynamic JObj = JsonConvert.DeserializeObject(jsonRep);
 
-            dynamic JObj = JsonConvert.DeserializeObject(jsonRep);
-            string charactersId = JObj.data.results[0].id;
-            string charactersIdStr = charactersId.ToString();
-            string characterThumbnail = JObj.data.results[0].thumbnail.path+ "/standard_large.jpg";
-            string characterDescription = JObj.data.results[0].description;
-            string characterName = JObj.data.results[0].name;
-            textName.Text = "Name : " + characterName;
-            textName.Visibility= Visibility.Visible;
-            textDescription.Text = "Description : " + characterDescription;
-            textDescription.Visibility= Visibility.Visible;
-            var uriSource = new Uri(characterThumbnail);
-            imageCharacter.Source = new BitmapImage(uriSource);
-            imageCharacter.Visibility= Visibility.Visible;
-            textListComics.Visibility= Visibility.Visible;
-            listDonne.Visibility= Visibility.Visible;
+                    if (JObj.data.count != 0){
+                        string charactersId = JObj.data.results[0].id;
+                        string charactersIdStr = charactersId.ToString();
+                        string characterThumbnail = JObj.data.results[0].thumbnail.path+ "/standard_large.jpg";
+                        string characterDescription = JObj.data.results[0].description;
+                        string characterName = JObj.data.results[0].name;
+                        textName.Text = "Name : " + characterName;
+                        textName.Visibility= Visibility.Visible;
+                        textDescription.Text = "Description : " + characterDescription;
+                        textDescription.Visibility= Visibility.Visible;
+                        var uriSource = new Uri(characterThumbnail);
+                        imageCharacter.Source = new BitmapImage(uriSource);
+                        imageCharacter.Visibility= Visibility.Visible;
+                        textListComics.Visibility= Visibility.Visible;
+                        listDonne.Visibility= Visibility.Visible;
 
+                        //content.Text = json;
+                        return charactersId;
 
+                    } else {
+                        textName.Text = "Error, votre super héros ne fais pas partie de l'univers marvel ou est mal orthographié";
+                        textName.Visibility= Visibility.Visible;
+                        return "error";
+                    }
 
-            //content.Text = json;
-            return charactersId;
-
+                }
+                catch (WebException e)
+                {
+                    textName.Text = "La requête à échoué";
+                    textName.Visibility= Visibility.Visible;
+                    throw e;
+                }
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
