@@ -82,6 +82,8 @@ namespace WpfApp1
                     int comicsCount = JObj.data.count;
                     Trace.WriteLine(comicsCount);
 
+                    comics = new List<Comic>();
+
                     for (int i = 0; i < comicsCount; i++)
                     {
                         Trace.WriteLine(i);
@@ -94,12 +96,17 @@ namespace WpfApp1
 
                         comics.Add(new Comic() {Title = crtTitle, Thumbnail = crtThumbnail, Description = crtDesc });
                     }
+
                     listDonne.ItemsSource = comics;
                 }
                 catch (WebException e)
                 {
                     textName.Text = "La requête à échoué";
                     textName.Visibility= Visibility.Visible;
+                    textDescription.Visibility= Visibility.Collapsed;
+                    imageCharacter.Visibility= Visibility.Collapsed;
+                    textListComics.Visibility= Visibility.Collapsed;
+                    listDonne.Visibility= Visibility.Collapsed;
                     throw e;
                 }
             }
@@ -143,6 +150,10 @@ namespace WpfApp1
                     } else {
                         textName.Text = "Error, votre super héros ne fais pas partie de l'univers marvel ou est mal orthographié";
                         textName.Visibility= Visibility.Visible;
+                        textDescription.Visibility= Visibility.Collapsed;
+                        imageCharacter.Visibility= Visibility.Collapsed;
+                        textListComics.Visibility= Visibility.Collapsed;
+                        listDonne.Visibility= Visibility.Collapsed;
                         return "error";
                     }
 
@@ -151,6 +162,10 @@ namespace WpfApp1
                 {
                     textName.Text = "La requête à échoué";
                     textName.Visibility= Visibility.Visible;
+                    textDescription.Visibility= Visibility.Collapsed;
+                    imageCharacter.Visibility= Visibility.Collapsed;
+                    textListComics.Visibility= Visibility.Collapsed;
+                    listDonne.Visibility= Visibility.Collapsed;
                     throw e;
                 }
             }
