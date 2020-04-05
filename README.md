@@ -12,7 +12,7 @@ Ou grâce à l'application Github Desktop avec le même lien.
 
 Ce qui est requis pour commencer avec votre projet...
 
-- Visual Studio (entension pour compiler du C#)
+- Éditeur de code pour compiler le projet
 - Connexion internet
 
 ## Démarrage
