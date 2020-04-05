@@ -32,3 +32,20 @@ C:\Users\Valentin\Desktop\ING4\C#\Projet\Marvel-Characters\WpfApp1\obj\Debug\Wpf
 C:\Users\gatie\Documents\Microsoft C#\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json.dll
 C:\Users\gatie\Documents\Microsoft C#\WpfApp1\WpfApp1\bin\Debug\Newtonsoft.Json.xml
 C:\Users\gatie\Documents\Microsoft C#\WpfApp1\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\bin\Debug\WpfApp1.exe.config
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\bin\Debug\WpfApp1.exe
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\bin\Debug\WpfApp1.pdb
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\MainWindow.g.cs
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\App.g.cs
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\MainWindow.baml
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.g.resources
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.cache
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.exe
+C:\Users\Valentin\Desktop\marv\Marvel-Characters\WpfApp1\obj\Debug\WpfApp1.pdb

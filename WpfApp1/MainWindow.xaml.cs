@@ -124,6 +124,8 @@ namespace WpfApp1
             {
                 try
                 {
+                    listDonne.ItemsSource = null;
+
                     jsonRep = client.DownloadString(urlCharacters + timeStamp + "&name=" + textBoxSearch.Text + "&apikey=" + publicKey + "&hash=" + hash);
 
                     dynamic JObj = JsonConvert.DeserializeObject(jsonRep);
